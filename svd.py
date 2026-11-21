@@ -34,7 +34,7 @@ def svd_decomposition(A, At):
 
 img = Image.open("jpan.jpg").convert("RGB").resize((250, 250))
 matrix = np.array(img, dtype=float)
-svd_data = [svd_decomposition(matrix[:, :, c], matrix[:, :, c].T) for c in range(3)]
+svd_data = [svd_decomposition(matrix[:, :, c], matrix[:, :, c].T) for c in range(3)] #Lưu ý nén sang RGB không gian 3D
 
 
 def show_image(event=None):
