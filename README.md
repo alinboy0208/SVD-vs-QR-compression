@@ -6,9 +6,9 @@ An interactive Python application built from scratch using **NumPy** and **Tkint
 
 ## 1. Theoretical Foundation: Mathematics of Data Science
 
-In Data Science, high-resolution images are represented as dense numerical matrices ($A \in \mathbb{R}^{m \times n}$ per RGB color channel). Storing and processing raw pixel matrices directly is computationally expensive. 
+In Data Science, high-resolution images are represented as dense numerical matrices ( $A \in \mathbb{R}^{m \times n}$ per RGB color channel). Storing and processing raw pixel matrices directly is computationally expensive. 
 
-This project applies low-rank matrix approximation and orthogonal projection from **Mathematics of Data Science** to compress visual data by retaining only the top $k$ latent features ($k \ll \min(m, n)$), significantly reducing storage footprint while preserving essential structural information.
+This project applies low-rank matrix approximation and orthogonal projection from **Mathematics of Data Science** to compress visual data by retaining only the top $k$ latent features (where $k \ll \min(m, n)$ ), significantly reducing storage footprint while preserving essential structural information.
 
 ---
 
@@ -24,13 +24,13 @@ Image compression via matrix factorization is not merely about saving disk space
 
 ## 3. Comparative Analysis: Why SVD Outperforms QR in Image Compression
 
-When compressing the same image (`jpan.jpg`) down to an identical rank ($k = 10$), **SVD** demonstrates vastly superior visual fidelity compared to **QR Decomposition**:
+When compressing the same image (`jpan.jpg`) down to an identical rank ( $k = 10$ ), **SVD** demonstrates vastly superior visual fidelity compared to **QR Decomposition**:
 
-| Criterion | Singular Value Decomposition ($A \approx U_k \Sigma_k V_k^T$) | QR Decomposition ($A \approx Q_k R_k$) |
+| Criterion | Singular Value Decomposition ( $A \approx U_k \Sigma_k V_k^T$ ) | QR Decomposition ( $A \approx Q_k R_k$ ) |
 | :--- | :--- | :--- |
-| **Compression Mechanism** | **Global Energy & Variance Prioritization:** Decomposes the matrix based on **singular values ($\sigma_i$)** sorted in descending order, prioritizing axes with the sharpest color transitions, contrast, and structural variance across the entire image. | **Sequential Column & Row Space Projection:** Orthogonalizes columns sequentially from left to right (Gram-Schmidt process) without global importance sorting (no pivoting). |
+| **Compression Mechanism** | **Global Energy & Variance Prioritization:** Decomposes the matrix based on **singular values** ( $\sigma_i$ ) sorted in descending order, prioritizing axes with the sharpest color transitions, contrast, and structural variance across the entire image. | **Sequential Column & Row Space Projection:** Orthogonalizes columns sequentially from left to right (Gram-Schmidt process) without global importance sorting (no pivoting). |
 | **Spatial Behavior** | Captures **global geometric structures** simultaneously across the entire frame (preserving both background silhouettes like Mt. Fuji and foreground details). | Restricts reconstruction to the subspace spanned by the **first $k$ leftmost columns**, causing horizontal streaking artifacts and completely losing central/right objects at low $k$. |
-| **Optimality (Eckart–Young Theorem)** | Mathematically proven to provide the **best possible rank-$k$ approximation** under both the Frobenius norm and Spectral norm. | Suboptimal for low-rank compression unless combined with column pivoting; primarily suited for solving linear least-squares problems rather than lossy data compression. |
+| **Optimality (Eckart–Young Theorem)** | Mathematically proven to provide the **best possible rank $k$ approximation** under both the Frobenius norm and Spectral norm. | Suboptimal for low-rank compression unless combined with column pivoting; primarily suited for solving linear least-squares problems rather than lossy data compression. |
 
 ---
 
@@ -42,7 +42,6 @@ SVD-vs-QR-compression/
 ├── qr.py        # From-scratch QR image compressor (Classical Gram-Schmidt)
 ├── jpan.jpg     # Sample benchmark image
 └── README.md    # Project documentation & mathematical analysis
-
 
 # 1. Clone the repository & navigate into the folder
 git clone [https://github.com/alinboy0208/SVD-vs-QR-compression.git](https://github.com/alinboy0208/SVD-vs-QR-compression.git) && cd SVD-vs-QR-compression
